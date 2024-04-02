@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding:60px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid black;
+            border-width:100px;
+            position: fixed;
+            margin-left:30%;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input[type="number"] {
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .output {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="number" id="temperature" placeholder="Enter temperature" required>
+        <label for="celsius">Fahrenheit</label>
+        <input type="radio" id="celsius" name="unit" value="celsius" checked>
+        <label for="fahrenheit">Celsius</label>
+        <input type="radio" id="fahrenheit" name="unit" value="fahrenheit">
+        <button id="convert">Convert</button>
+        <div class="output" id="output"></div>
+    </div>
+    <script>
+        // Add event listener to the convert button
+        document.getElementById("convert").addEventListener("click", function() {
+            // Get the temperature value and unit from the input and radio button
+            var temperature = document.getElementById("temperature").value;
+            var unit = document.querySelector('input[name="unit"]:checked').value;
+            // Convert the temperature based on the selected unit
+            if (unit === "celsius") 
+            {
+                temperature = (temperature * 9/5) + 32;
+                document.getElementById("output").textContent = temperature.toFixed(2) + "°F";
+            } else if (unit === "fahrenheit") 
+            {
+                temperature = (temperature - 32) * 5/9;
+                document.getElementById("output").textContent = temperature.toFixed(2) + "°C";
+            }
+        });
+    </script>
+</body>
+</html>
